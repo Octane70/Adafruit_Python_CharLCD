@@ -242,18 +242,16 @@ class Adafruit_CharLCD(object):
 
     def message(self, text):
         """Write text to display.  Note that text can include newlines."""
-        line = 0
         # Iterate through each character.
         for char in text:
-            # Advance to next line if character is a new line.
-            if char == '\n':
-                line += 1
-                # Move to left or right side depending on text direction.
-                col = 0 if self.displaymode & LCD_ENTRYLEFT > 0 else self._cols-1
-                self.set_cursor(col, line)
-            # Write the character to the display.
+            if char == '\2':
+                self.write8(0xC0) # 2nd line
+            elif char == '\3':
+                self.write8(0x94) # 3rd line
+            elif char == '\4':
+                self.write8(0xD4) # 4th line
             else:
-                self.write8(ord(char), True)
+                self.write8(ord(char),True)
 
     def set_backlight(self, backlight):
         """Enable or disable the backlight.  If PWM is not enabled (default), a

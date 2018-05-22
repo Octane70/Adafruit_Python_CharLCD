@@ -1,5 +1,12 @@
 Adafruit_Python_CharLCD
 =======================
+# 5-22-18: Added support for 20X4 lcd based off Jerd's - https://www.raspberrypi.org/forums/viewtopic.php?t=36094
+
+# Print a four line message
+lcd.message('Line1!\2')
+lcd.message('Line2!\3')
+lcd.message('Line3!\4')
+lcd.message('Line4!')
 
 Python library for accessing Adafruit character LCDs from a Raspberry Pi or BeagleBone Black.
 
